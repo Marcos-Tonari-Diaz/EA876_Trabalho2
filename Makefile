@@ -5,10 +5,10 @@ LINE_CONVO=$(LINE_CONV:.c=.o)
 
 
 test:
-	$(MAKE) -C src/tests
+$(MAKE) -C src/tests
 
 LINE_CONVO: IMG0
-	$(MAKE) -C src/conv
+    $(MAKE) -C src/conv
 
 IMG0:
-	$(MAKE) -C src/images
+    $(MAKE) -C src/images
