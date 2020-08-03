@@ -93,16 +93,8 @@ int main(){
 		simpleLineConv(img.g, img.width, img.height, 0, i, gaussianKernel5x5, N, &(imgOut.g[i*img.width]));
 		simpleLineConv(img.b, img.width, img.height, 0, i, gaussianKernel5x5, N, &(imgOut.b[i*img.width]));
 	}
-	imagem imgOut2;
-	imgAlloc(&imgOut2, img.width, img.height);
-	for (i=0; i<(img.height); i++) {
-		simpleLineConv(imgOut.r, img.width, img.height, 0, i, gaussianKernel5x5, N, &(imgOut2.r[i*img.width]));
-		simpleLineConv(imgOut.g, img.width, img.height, 0, i, gaussianKernel5x5, N, &(imgOut2.g[i*img.width]));
-		simpleLineConv(imgOut.b, img.width, img.height, 0, i, gaussianKernel5x5, N, &(imgOut2.b[i*img.width]));
-	}
-  	salvar_imagem("cachorroEdge.jpg", &imgOut2);
+  	salvar_imagem("cachorroEdge.jpg", &imgOut);
 	imgFree(&imgOut);
-	imgFree(&imgOut2);
 
 	return 0;
 }
