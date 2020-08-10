@@ -2,10 +2,18 @@
 #include <stdio.h>
 
 int main(){
-	float gaussVec[9];
+	float gaussVec[30];
 	int i;
-	gaussianSamples1D(0.9, 9, gaussVec);
-	for (i=0; i< 9;i++){
-		printf("%f,", gaussVec[i]);
+	float acc;
+	/*
+	gaussianSamples1D(1, 30, gaussVec);
+	for (i=0; i<30; i++){
+		printf("%f\n", gaussVec[i]);
+		acc+=gaussVec[i];
 	}
+	printf("area=%f\n", acc);
+	*/
+	float linear(float sd, float x){ return x;}
+	float res = simpsonIntegration(linear, 0, 5, 8, 8);
+	printf("%f\n", res);	
 }
