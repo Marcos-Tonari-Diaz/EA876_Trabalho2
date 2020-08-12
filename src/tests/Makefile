@@ -1,6 +1,15 @@
-all: linear #thread
+all: sobel gauss box
 
-linear: linear.c
-	gcc -g -o linear linear.c ../images/imageprocessing.o ../conv/line_conv.o -I ../images -I ../conv -lfreeimage
-thread: thread.c
-	gcc -g -o thread thread.c ../images/imageprocessing.o ../conv/line_conv.o -I ../images -I ../conv -lfreeimage -lpthread
+box:
+	gcc -o box box_test.c ../images/imageprocessing.o ../conv/line_conv.o -I ../images -I ../conv -lfreeimage
+sobel:
+	gcc -g -o sobel sobel_test.c ../images/imageprocessing.o ../conv/line_conv.o -I ../images -I ../conv -lfreeimage -lm
+gauss:
+	gcc -o gauss gaussian_test.c ../images/imageprocessing.o ../conv/line_conv.o ../gauss/gaussianKernel.o -I ../images -I ../conv -lfreeimage -I ../gauss -lm
+clean:
+	rm -f gauss box sobel
+	rm -f *.jpg
+test: all
+	./sobel
+	./gauss
+	./box
