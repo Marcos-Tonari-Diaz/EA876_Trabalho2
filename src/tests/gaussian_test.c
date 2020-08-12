@@ -15,7 +15,7 @@ int main(){
 	imagem imgOut;
 	imgAlloc(&imgOut, img.width, img.height);
 
-	int N = 5;
+	int N = 20;
 	float sd = 1;
 	float gauss_vert[N];
 	float gauss_horiz[N];
@@ -26,6 +26,10 @@ int main(){
 		lineConvVerticalKernel(img.r, img.width, img.height, 0, i, gauss_vert, N, &(imgOut.r[i*img.width]));
 		lineConvVerticalKernel(img.g, img.width, img.height, 0, i, gauss_vert, N, &(imgOut.g[i*img.width]));
 		lineConvVerticalKernel(img.b, img.width, img.height, 0, i, gauss_vert, N, &(imgOut.b[i*img.width]));
+
+		lineConvHorizontalKernel(img.r, img.width, img.height, 0, i, gauss_horiz, N, &(imgOut.r[i*img.width]));
+		lineConvHorizontalKernel(img.g, img.width, img.height, 0, i, gauss_horiz, N, &(imgOut.g[i*img.width]));
+		lineConvHorizontalKernel(img.b, img.width, img.height, 0, i, gauss_horiz, N, &(imgOut.b[i*img.width]));
 	}
   	salvar_imagem("cachorroTrueGauss.jpg", &imgOut);
 	imgFree(&imgOut);
