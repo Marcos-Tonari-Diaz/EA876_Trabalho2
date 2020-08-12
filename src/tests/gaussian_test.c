@@ -14,25 +14,28 @@ int main(){
        	
 	imagem imgOut;
 	imgAlloc(&imgOut, img.width, img.height);
+	imagem imgTemp;
+	imgAlloc(&imgTemp, img.width, img.height);
 
-	int N = 20;
+	int N = 50;
 	float sd = 1;
-	float gauss_vert[N];
-	float gauss_horiz[N];
-	gaussianSamples1D(sd, N, gauss_vert);
-	gaussianSamples1D(sd, N, gauss_horiz);
+	float gauss[N];
+	gaussianSamples1D(sd, N, gauss);
 
 	for (i=0; i<(img.height); i++) {
-		lineConvVerticalKernel(img.r, img.width, img.height, 0, i, gauss_vert, N, &(imgOut.r[i*img.width]));
-		lineConvVerticalKernel(img.g, img.width, img.height, 0, i, gauss_vert, N, &(imgOut.g[i*img.width]));
-		lineConvVerticalKernel(img.b, img.width, img.height, 0, i, gauss_vert, N, &(imgOut.b[i*img.width]));
+		lineConvVerticalKernel(img.r, img.width, img.height, 0, i, gauss, N, &(imgTemp.r[i*img.width]));
+		lineConvVerticalKernel(img.g, img.width, img.height, 0, i, gauss, N, &(imgTemp.g[i*img.width]));
+		lineConvVerticalKernel(img.b, img.width, img.height, 0, i, gauss, N, &(imgTemp.b[i*img.width]));
+	}
+	for (i=0; i<(img.height); i++) {
 
-		lineConvHorizontalKernel(img.r, img.width, img.height, 0, i, gauss_horiz, N, &(imgOut.r[i*img.width]));
-		lineConvHorizontalKernel(img.g, img.width, img.height, 0, i, gauss_horiz, N, &(imgOut.g[i*img.width]));
-		lineConvHorizontalKernel(img.b, img.width, img.height, 0, i, gauss_horiz, N, &(imgOut.b[i*img.width]));
+		lineConvHorizontalKernel(imgTemp.r, img.width, img.height, 0, i, gauss, N, &(imgOut.r[i*img.width]));
+		lineConvHorizontalKernel(imgTemp.g, img.width, img.height, 0, i, gauss, N, &(imgOut.g[i*img.width]));
+		lineConvHorizontalKernel(imgTemp.b, img.width, img.height, 0, i, gauss, N, &(imgOut.b[i*img.width]));
 	}
   	salvar_imagem("cachorroTrueGauss.jpg", &imgOut);
 	imgFree(&imgOut);
+	imgFree(&imgTemp);
 
 	return 0;
 }

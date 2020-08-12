@@ -20,3 +20,6 @@ clean:
 	$(MAKE) clean -C src/conv
 	$(MAKE) clean -C src/gauss
 	$(MAKE) clean -C src/images
+
+test: all
+	$(MAKE) test -C src/tests
