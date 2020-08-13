@@ -1,12 +1,5 @@
-#ifndef IMAGE_LIB
-#define IMAGE_LIB
-
-#include <line_conv.h>
-#include <imageprocessing.h>
-
-#endif
-
-int main(){
+#include "linear_box.h"
+void* linear_box(void* args){
 	int i;
 	imagem img;
 	img = abrir_imagem("../../data/cachorro.jpg");
@@ -28,5 +21,5 @@ int main(){
   	salvar_imagem("cachorroBoxBlur.jpg", &imgOut);
 	imgFree(&imgOut);
 
-	return 0;
+
 }

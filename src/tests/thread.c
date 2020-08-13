@@ -4,42 +4,8 @@
  * entrada. Ao receber um caractere fim de linha ('\n'), deve imprimir na tela o
  * numero de palavras separadas que recebeu e, apos, encerrar.
  */
+#include "thread.h"
 
-
-#ifndef IMAGE_LIB
-#define IMAGE_LIB
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <pthread.h>
-#include <imageprocessing.h>
-
-#endif
-
-#define WORKER 3
-#define ATIVO 1
-#define INATIVO 0
-
-enum color
-{ 
-    RED, 
-    GREEN, 
-    BLUE 
-};
-
-/*tipo pro thread ter a info do numero e o id*/
-typedef struct{
-    int COLOR;
-    imagem IMG;
-    float* FILTRO;
-    int N;
-    } thread_args;
-
-/*Variaveis Globais*/
-
-pthread_t workers[WORKER];//threads
-imagem imgOut;
 
 void* worker(void *arg){
     /*thread
@@ -47,16 +13,16 @@ void* worker(void *arg){
      
     thread_args* work = (thread_args*)(arg);
     if(work->COLOR == RED){
-        for (i=0; i<(img.height); i++) {
-            simpleLineConv(work->IMG.r, work->IMG.width, work->IMG.height, 0, i, wrok->FILTRO, work->N, &(imgOut.r[i*work->IMG.width]));
+        for (int i=0; i<(work->IMG.height); i++) {
+            simpleLineConv(work->IMG.r, work->IMG.width, work->IMG.height, 0, i, work->FILTRO, work->N, &(imgOut.r[i*work->IMG.width]));
         }
     }else if(work->COLOR == GREEN){
-        for (i=0; i<(img.height); i++) {
-            simpleLineConv(work->IMG.g, work->IMG.width, work->IMG.height, 0, i, wrok->FILTRO, work->N, &(imgOut.g[i*work->IMG.width]));
+        for (int i=0; i<(work->IMG.height); i++) {
+            simpleLineConv(work->IMG.g, work->IMG.width, work->IMG.height, 0, i, work->FILTRO, work->N, &(imgOut.g[i*work->IMG.width]));
         }
     }else if(work->COLOR == BLUE){ 
-        for (i=0; i<(img.height); i++) {
-            simpleLineConv(work->IMG.b, work->IMG.width, work->IMG.height, 0, i, wrok->FILTRO, work->N, &(imgOut.b[i*work->IMG.width]));
+        for (int i=0; i<(work->IMG.height); i++) {
+            simpleLineConv(work->IMG.b, work->IMG.width, work->IMG.height, 0, i, work->FILTRO, work->N, &(imgOut.b[i*work->IMG.width]));
         }
     }
     free(work);
@@ -64,10 +30,12 @@ void* worker(void *arg){
 }
 
 
-int main() {
+void* thread_conv(void* args) {
     
     
-    thread_args* red, green, blue;
+    thread_args *red;
+    thread_args *green;
+    thread_args *blue;
     
     imagem img = abrir_imagem("../../data/cachorro.jpg");
 
@@ -75,11 +43,10 @@ int main() {
 
     int N = 8;
     float boxBlurKernel[N*N] ;
-    for (i=0; i<(N*N); i++){
+    for (int i=0; i<(N*N); i++){
         boxBlurKernel[i]=(float)1/((float)N*N);
     }
     
-
     red = (thread_args*)malloc(sizeof(thread_args));
     red->COLOR = RED;
     red->IMG = img;
@@ -111,5 +78,6 @@ int main() {
 
     salvar_imagem("cachorro_thread.jpg", &imgOut);
     imgFree(&imgOut);
-    return 0;
+    return NULL;
 }
+

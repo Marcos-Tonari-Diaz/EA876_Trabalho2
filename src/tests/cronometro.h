@@ -2,7 +2,7 @@
 #define CRONOMETRO_H
 
 
-void medir_tempo(void *(*funcao)(void *args), void *args);
+void medir_tempo(void *(*funcao)(void *args));
 
 #endif
 

@@ -1,11 +1,4 @@
-#ifndef TESTS
-#define TESTS
-
-#include <line_conv.h>
-#include <imageprocessing.h>
-#include <gaussianKernel.h>
-
-#endif
+#include "linear_gauss.h"
 
 int main(){
 	int i;
@@ -39,3 +32,7 @@ int main(){
 
 	return 0;
 }
+
+/*int main(){
+    linear_gauss();
+}*/
