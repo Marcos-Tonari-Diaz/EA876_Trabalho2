@@ -56,7 +56,7 @@ int main(){
 							Gy.b[i*img.width+j]*Gy.b[i*img.width+j]);
 		}
 	}
-  	salvar_imagem("cachorroGauss.jpg", &imgOut);
+  	salvar_imagem("cachorroSobel.jpg", &imgOut);
 	imgFree(&imgOut);
 	imgFree(&Gx);
 	imgFree(&Gy);

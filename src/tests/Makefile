@@ -2,8 +2,6 @@ all: sobel gauss box thread main
 
 box:
 	gcc -o box filtros/box_test.c ../images/imageprocessing.o ../conv/line_conv.o -I ../images -I ../conv -lfreeimage
-sobel:
-	gcc -g -o sobel filtros/sobel_test.c ../images/imageprocessing.o ../conv/line_conv.o -I ../images -I ../conv -lfreeimage -lm
 gauss:
 	gcc -o gauss linear_gauss.c ../images/imageprocessing.o ../conv/line_conv.o ../gauss/gaussianKernel.o -I ../images -I ../conv -lfreeimage -I ../gauss -lm
 thread:

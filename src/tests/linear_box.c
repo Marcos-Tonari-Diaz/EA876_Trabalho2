@@ -1,4 +1,5 @@
 #include "linear_box.h"
+
 void* linear_box(void* args){
 	int i;
 	imagem img;
@@ -20,6 +21,5 @@ void* linear_box(void* args){
 	}
   	salvar_imagem("cachorroBoxBlur.jpg", &imgOut);
 	imgFree(&imgOut);
-
 
 }
