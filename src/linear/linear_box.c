@@ -2,7 +2,7 @@
 void* linear_box(void* args){
 	int i;
 	imagem img;
-	img = abrir_imagem("../../data/cachorro.jpg");
+	img = abrir_imagem("/home/marcos/Documents/5SEM/EA876/EA876_Trabalho2/data/cachorro.jpg");
        	
 	imagem imgOut;
 	imgAlloc(&imgOut, img.width, img.height);

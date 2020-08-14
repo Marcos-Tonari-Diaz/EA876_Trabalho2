@@ -6,4 +6,4 @@ test: all
 
 clean:
 	rm -f main
-	rm *.jpg
+	rm -f *.jpg
