@@ -34,6 +34,7 @@ clean:
 	$(MAKE) clean -C src/thread
 	$(MAKE) clean -C src
 	rm -f *.jpg
+	rm -f main
 
 test: all
 	./main | python3 src/analise.py	
