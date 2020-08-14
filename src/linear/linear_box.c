@@ -7,7 +7,7 @@ void* linear_box(void* args){
 	imagem imgOut;
 	imgAlloc(&imgOut, img.width, img.height);
 
-	int N = 5;
+	int N = 8;
 	float boxBlurKernel[N*N] ;
 	for (i=0; i<(N*N); i++){
 		boxBlurKernel[i]=(float)1/((float)N*N);
