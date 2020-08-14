@@ -37,7 +37,7 @@ void* thread_conv(void* args) {
     thread_args *green;
     thread_args *blue;
     
-    imagem img = abrir_imagem("../../data/cachorro.jpg");
+    imagem img = abrir_imagem("data/cachorro.jpg");
 
     imgAlloc(&imgOut, img.width, img.height);
 	/*crio o filtro*/

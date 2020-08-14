@@ -36,4 +36,4 @@ clean:
 	rm -f *.jpg
 
 test: all
-	$(MAKE) test -C src
+	./main | python3 src/analise.py	

@@ -1,6 +1,4 @@
-#include <time.h>
-#include <sys/time.h>
-#include <stdio.h>
+#include "cronometro.h"
 
 
 void medir_tempo(void *(*funcao)(void *args), void *args) {
