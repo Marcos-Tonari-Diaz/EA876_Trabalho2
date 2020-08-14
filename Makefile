@@ -4,7 +4,7 @@ LINE_CONV=line_conv.c
 LINE_CONVO=$(LINE_CONV:.c=.o)
 
 
-all: IMG0 GAUSS LINE_CONVO
+all: IMG0 LINE_CONVO
 	$(MAKE) -C src/tests
 
 GAUSS: 

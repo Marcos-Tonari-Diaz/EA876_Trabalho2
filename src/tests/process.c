@@ -1,7 +1,8 @@
-#include <sys/types.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "process.h"
 
+#define N_PROCESSOS 8
+
+// canais de cor
 enum color
 { 
     RED, 
@@ -9,53 +10,64 @@ enum color
     BLUE 
 };
 
-void* process_box(void* args){
+int main(){
 	int i;
-	imagem img;
-	img = abrir_imagem("../../data/cachorro.jpg");
-       	
-	imagem imgOut;
-	imgAlloc(&imgOut, img.width, img.height);
 
+	// entrada
+	imagem img = abrir_imagem("../../data/cachorro.jpg");
+
+	// na versao em proxesso, inicio a struct manualmente	
+	imagem imgOut;
+	imgOut.height=img.height;
+	imgOut.width=img.width;
+
+	//Por memoria compartilhada
+	/* Definir flags de protecao e visibilidade de memoria */
+	int protection = PROT_READ | PROT_WRITE;
+	int visibility = MAP_SHARED | MAP_ANON;
+
+	// os canais de imgOut sao memoria compartilhada
+	imgOut.r = (float*) mmap(NULL, sizeof(float)*img.width*img.height, protection, visibility, 0, 0);
+	imgOut.g = (float*) mmap(NULL, sizeof(float)*img.width*img.height, protection, visibility, 0, 0);
+	imgOut.b = (float*) mmap(NULL, sizeof(float)*img.width*img.height, protection, visibility, 0, 0);
+
+	// Kernel
 	int N = 5;
 	float boxBlurKernel[N*N] ;
 	for (i=0; i<(N*N); i++){
 		boxBlurKernel[i]=(float)1/((float)N*N);
 	}
 
-	// faz a convolucao dependendo do canal
-	void channelSelect(int channel){
-		if (channel==RED){
-			for (i=0; i<(img.height); i++) {
-				simpleLineConv(img.r, img.width, img.height, 0, i, boxBlurKernel, N, &(imgOut.r[i*img.width]));
-			}
-		else if (channel==GREEN){
-			for (i=0; i<(img.height); i++) {
-				simpleLineConv(img.g, img.width, img.height, 0, i, boxBlurKernel, N, &(imgOut.g[i*img.width]));
-			}
-		else if (channel==BLUE){
-			for (i=0; i<(img.height); i++) {
-				simpleLineConv(img.b, img.width, img.height, 0, i, boxBlurKernel, N, &(imgOut.b[i*img.width]));
-			}
-		return;
-	}
-
-	// processos usados
-	pid_t filhos[3];
+	// processos utilizados
+	pid_t filhos[N_PROCESSOS];
 
   	// implementacao em processos: cada processo atua em um canal de cor
-	for (i=0;i<3;i++){
+	for (i=0;i<N_PROCESSOS ;i++){
 		filhos[i]=fork();
 		if (filhos[i]==0){
-			channelSelect(i);
+			if (i==RED){
+				for (i=0; i<(img.height); i++) {
+					simpleLineConv(img.r, img.width, img.height, 0, i, boxBlurKernel, N, &(imgOut.r[i*img.width]));
+				}
+			}
+			else if (i==GREEN){
+				for (i=0; i<(img.height); i++) {
+					simpleLineConv(img.g, img.width, img.height, 0, i, boxBlurKernel, N, &(imgOut.g[i*img.width]));
+				}
+			}
+			else if (i==BLUE){
+				for (i=0; i<(img.height); i++) {
+					simpleLineConv(img.b, img.width, img.height, 0, i, boxBlurKernel, N, &(imgOut.b[i*img.width]));
+				}
+			}
+			exit(0);
 		}
 	}	
-
 	//espera os processos filhos terminarem
-	for (i=0;i<4;i++){
+	for (i=0;i<N_PROCESSOS;i++){
 		waitpid(filhos[i], NULL, 0);
 	}
 	
   	salvar_imagem("cachorroProcessBox.jpg", &imgOut);
-	imgFree(&imgOut);
+	return 0;
 }
