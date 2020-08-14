@@ -1,4 +1,3 @@
-
 #include "thread.h"
 #include "linear_box.h"
 #include "cronometro.h"
@@ -16,9 +15,9 @@ int main(){
 
 	printf("Tempo linear\n");
 	medir_tempo(linear_box, &lixo);
-	printf("Tempo thread\n");
-	medir_tempo(thread_conv, &lixo);
-	printf("Tempo processo\n");
+	//printf("Tempo thread\n");
+	//medir_tempo(thread_conv, &lixo);
+	//printf("Tempo processo\n");
 	//medir_tempo(processo_conv, &lixo);
 	
 	return 0;

@@ -1,4 +1,4 @@
 cronometro.o:
-	gcc -c cronometro.c -I./
+	gcc -c cronometro.c -I ./
 clean:
-	rm cronometro.o
+	rm -f cronometro.o

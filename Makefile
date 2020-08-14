@@ -32,6 +32,8 @@ clean:
 	$(MAKE) clean -C src/images
 	$(MAKE) clean -C src/linear
 	$(MAKE) clean -C src/thread
+	$(MAKE) clean -C src
+	rm -f *.jpg
 
 test: all
 	$(MAKE) test -C src
