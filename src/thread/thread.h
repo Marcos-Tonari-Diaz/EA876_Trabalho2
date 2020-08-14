@@ -21,7 +21,7 @@ enum color
     BLUE 
 };
 
-/*tipo pro thread ter a info do numero e o id*/
+/*tipo pro thread ter a info da cor(rgb), a imagem, o tipo de filtro e o tamanho do filtro*/
 typedef struct{
     int COLOR;
     imagem IMG;
@@ -34,6 +34,8 @@ typedef struct{
 pthread_t workers[WORKER];//threads
 imagem imgOut;
 
+/*funcao que faz a convolucao de cada cor em diferentes threads*/
 void* worker(void *arg);
 
+/*funcao que inicializa as threads e faz a convolucao*/
 void* thread_conv(void* args);

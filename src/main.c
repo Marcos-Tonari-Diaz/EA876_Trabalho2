@@ -9,11 +9,17 @@
 
 
 int main(){
-	int oi;
+	/*Variavel lixo para conseguir chamar a funcao medir_tempo,
+	  como nenhuma das funcoes precisa de paramentros essa
+	  variavel nao afeta em nada*/
+	int lixo;
+
 	printf("Tempo linear\n");
-	medir_tempo(linear_box, &oi);
+	medir_tempo(linear_box, &lixo);
 	printf("Tempo thread\n");
-	medir_tempo(thread_conv, &oi);
+	medir_tempo(thread_conv, &lixo);
+	printf("Tempo processo\n");
+	//medir_tempo(processo_conv, &lixo);
 	
 	return 0;
 

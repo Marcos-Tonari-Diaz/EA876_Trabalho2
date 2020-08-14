@@ -8,10 +8,10 @@
 
 
 void* worker(void *arg){
-    /*thread
-    pego a parametro, dou o typecast pra thread_args e calculo o primo do valor N do thread_args*/
-     
+    /*pego a parametro, dou o typecast pra thread_args*/
     thread_args* work = (thread_args*)(arg);
+
+	/*Dependendo da cor passada aplico a convolucao da cor*/
     if(work->COLOR == RED){
         for (int i=0; i<(work->IMG.height); i++) {
             simpleLineConv(work->IMG.r, work->IMG.width, work->IMG.height, 0, i, work->FILTRO, work->N, &(imgOut.r[i*work->IMG.width]));
@@ -32,7 +32,7 @@ void* worker(void *arg){
 
 void* thread_conv(void* args) {
     
-    
+    /*Inicializo as threads para cada cor da imagem*/
     thread_args *red;
     thread_args *green;
     thread_args *blue;
@@ -40,13 +40,14 @@ void* thread_conv(void* args) {
     imagem img = abrir_imagem("../../data/cachorro.jpg");
 
     imgAlloc(&imgOut, img.width, img.height);
-
+	/*crio o filtro*/
     int N = 8;
     float boxBlurKernel[N*N] ;
     for (int i=0; i<(N*N); i++){
         boxBlurKernel[i]=(float)1/((float)N*N);
     }
     
+	/*Configuro as informacoes para fazer a convolucao inicio a thread para cada cor*/
     red = (thread_args*)malloc(sizeof(thread_args));
     red->COLOR = RED;
     red->IMG = img;
@@ -71,11 +72,12 @@ void* thread_conv(void* args) {
     pthread_create(&(workers[BLUE]), NULL, worker, (void*)blue);
     
     
-
+	/*Espero todas as threads encerrarem*/
     for(int i=0; i<WORKER; i++){
         pthread_join(workers[i], NULL);
     }
 
+	/*Salvo a imagem*/
     salvar_imagem("cachorro_thread.jpg", &imgOut);
     imgFree(&imgOut);
     return NULL;
