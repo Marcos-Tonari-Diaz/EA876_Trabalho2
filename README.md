@@ -16,7 +16,7 @@
 
 ```make test```: Executa as filtragens e gera os gráficos. Eles serao salvos em formato pdf na pasta temp. As imagens sao salvas na pasta raiz.
 
-```make clean```: Exclui os arquivos obejto (.o),  executáveis e imagens geradas.
+```make clean```: Exclui os arquivos objeto (.o),  executáveis e imagens geradas.
 
 ```make extra```: Executa os filtros gaussiano e sobel (bonus) e salva as imagens no diretorio raiz.
 
