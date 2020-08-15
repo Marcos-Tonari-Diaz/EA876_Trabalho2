@@ -18,8 +18,6 @@ for line in sys.stdin:
         thread[linha-ITERACOES] = float(line)
     elif(2*ITERACOES <= linha < 3*ITERACOES):
         processo[linha-(2*ITERACOES)] = float(line)
-	else:
-		break
     linha+=1
 n_bins = 20
 
