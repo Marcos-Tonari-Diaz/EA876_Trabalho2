@@ -5,4 +5,8 @@ import sys
 ITERACOES =3
 
 for line in sys.stdin:
-    print(float(line))
+	try:
+		print(float(line))
+	except ValueError:
+		sys.stdout.write(line)
+		

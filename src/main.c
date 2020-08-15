@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define ITERACOES 3
+#define ITERACOES 4
 
 
 int main(){
@@ -14,15 +14,15 @@ int main(){
 	  variavel nao afeta em nada*/
 	int lixo;
 
-	//printf("linear\n");
+	printf("linear\n");
 	for(int i=0; i<ITERACOES; i++){
 		medir_tempo(linear_box, &lixo);
 	}
-	//printf("thread\n");
+	printf("thread\n");
 	for(int i=0; i<ITERACOES; i++){
 		medir_tempo(thread_conv, &lixo);
 	}
-	//printf("processo\n");
+	printf("processo\n");
 	for(int i=0; i<ITERACOES; i++){
 		medir_tempo(processo_conv, &lixo);
 	}
