@@ -1,6 +1,6 @@
 
-#ifndef TESTS 
-#define TESTS
+#ifndef THREAD 
+#define THREAD
 
 #include <stdlib.h>
 #include <pthread.h>
