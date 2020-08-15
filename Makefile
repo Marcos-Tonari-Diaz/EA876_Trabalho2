@@ -37,9 +37,12 @@ clean:
 	$(MAKE) clean -C src/thread
 	$(MAKE) clean -C src/process
 	$(MAKE) clean -C src/cronometro
+	$(MAKE) clean -C src/extra
 	$(MAKE) clean -C src
-	rm -f *.jpg
+	rm -f resultados/*.jpg
+	rm -f temp/*.pdf
 	rm -f main
+
 
 test: all
 	./main | python3 src/analise.py	
@@ -49,3 +52,5 @@ gauss:
 
 extra: gauss
 	$(MAKE) -C src/extra
+	./src/extra/gauss
+	./src/extra/sobel

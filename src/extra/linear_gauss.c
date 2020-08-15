@@ -1,6 +1,6 @@
 #include "linear_gauss.h"
 
-void* linear_gauss(void* args){
+int main(){
 	int i;
 	imagem img;
 	img = abrir_imagem("../../data/cachorro.jpg");
@@ -26,10 +26,10 @@ void* linear_gauss(void* args){
 		lineConvHorizontalKernel(imgTemp.g, img.width, img.height, 0, i, gauss, N, &(imgOut.g[i*img.width]));
 		lineConvHorizontalKernel(imgTemp.b, img.width, img.height, 0, i, gauss, N, &(imgOut.b[i*img.width]));
 	}
-  	salvar_imagem("cachorroTrueGaussLinear.jpg", &imgOut);
+  	salvar_imagem("resultados/cachorroTrueGaussLinear.jpg", &imgOut);
 	liberar_imagem(&img);
 	imgFree(&imgOut);
 	imgFree(&imgTemp);
 
-	return NULL; 
+	return 0; 
 }

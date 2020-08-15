@@ -1,9 +1,3 @@
-/* Contador de palavras
- *
- * Este programa recebera uma serie de caracteres representando palavras em sua
- * entrada. Ao receber um caractere fim de linha ('\n'), deve imprimir na tela o
- * numero de palavras separadas que recebeu e, apos, encerrar.
- */
 #include "thread.h"
 
 
@@ -43,21 +37,20 @@ void* thread_conv(void* args) {
     imagem img = abrir_imagem("data/cachorro.jpg");
 
     imgAlloc(&imgOut, img.width, img.height);
-	/*crio o filtro*/
+    /*crio o filtro*/
     int N = 8;
     float boxBlurKernel[N*N] ;
     for (int i=0; i<(N*N); i++){
         boxBlurKernel[i]=(float)1/((float)N*N);
     }
     
-	/*Configuro as informacoes para fazer a convolucao inicio a thread para cada cor*/
+    /*Configuro as informacoes para fazer a convolucao inicio a thread para cada cor*/
     red = (thread_args*)malloc(sizeof(thread_args));
     red->COLOR = RED;
     red->IMG = img;
     red->FILTRO = boxBlurKernel;
     red->N = N;
     pthread_create(&(workers[RED]), NULL, worker, (void*)red);
-
 
     green = (thread_args*)malloc(sizeof(thread_args));
     green->COLOR = GREEN;
@@ -66,7 +59,6 @@ void* thread_conv(void* args) {
     green->N = N;
     pthread_create(&(workers[GREEN]), NULL, worker, (void*)green);
 
-
     blue = (thread_args*)malloc(sizeof(thread_args));
     blue->COLOR = BLUE;
     blue->IMG = img;
@@ -74,15 +66,14 @@ void* thread_conv(void* args) {
     blue->N = N;
     pthread_create(&(workers[BLUE]), NULL, worker, (void*)blue);
     
-    
-	/*Espero todas as threads encerrarem*/
+    /*Espero todas as threads encerrarem*/
     for(int i=0; i<WORKER; i++){
         pthread_join(workers[i], NULL);
     }
 
     liberar_imagem(&img);
 	if (iter==99)
-    		salvar_imagem("cachorro_thread.jpg", &imgOut);
+    		salvar_imagem("resultados/cachorro_thread.jpg", &imgOut);
     imgFree(&imgOut);
     return NULL;
 }

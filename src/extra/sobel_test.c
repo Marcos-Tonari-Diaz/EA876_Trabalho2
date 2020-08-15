@@ -1,6 +1,6 @@
 #include "sobel_test.h"
 
-void* linear_sobel(void* args){
+int main(){
 	int i, j;
 	imagem img;
 	img = abrir_imagem("../../data/Sunflower.jpg");
@@ -50,7 +50,7 @@ void* linear_sobel(void* args){
 							Gy.b[i*img.width+j]*Gy.b[i*img.width+j]);
 		}
 	}
-  	salvar_imagem("SunflowerSobel.jpg", &imgOut);
+  	salvar_imagem("resultados/SunflowerSobel.jpg", &imgOut);
 	liberar_imagem(&img);
 	imgFree(&imgOut);
 	imgFree(&Gx);
@@ -58,5 +58,5 @@ void* linear_sobel(void* args){
 	imgFree(&GxTemp);
 	imgFree(&GyTemp);
 
-	return; 
+	return 0; 
 }

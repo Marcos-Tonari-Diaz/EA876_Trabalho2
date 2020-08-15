@@ -71,6 +71,6 @@ void* processo_conv(void* args){
 		waitpid(filhos[i], NULL, 0);
 	}
 	if (iter==99)
-    		salvar_imagem("cachorro_process.jpg", &imgOut);
+    		salvar_imagem("resultados/cachorro_process.jpg", &imgOut);
     return NULL;
 }

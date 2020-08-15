@@ -39,7 +39,7 @@ plt.title("Tempo em Processos", fontsize=15)
 
 #plt.show()
 
-lin.savefig("doc/linear.pdf", bbox_inches='tight')
-thre.savefig("doc/thread.pdf", bbox_inches='tight')
-pro.savefig("doc/processos.pdf", bbox_inches='tight')
+lin.savefig("temp/linear.pdf", bbox_inches='tight')
+thre.savefig("temp/thread.pdf", bbox_inches='tight')
+pro.savefig("temp/processos.pdf", bbox_inches='tight')
 
