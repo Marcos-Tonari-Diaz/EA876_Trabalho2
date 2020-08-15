@@ -6,9 +6,9 @@
 ### nome: Marcos Gabriel Diaz ra: 221525
 
 ## Instrucoes
-1.make clear para limpar os arquivos
-2.make test para testar
-3.make extra para bonus
+1. make clear para limpar os arquivos
+2. make test para testar
+3. make extra para bonus
 
 ## Comandos:
 
