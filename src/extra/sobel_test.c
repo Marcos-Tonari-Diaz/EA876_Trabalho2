@@ -1,15 +1,9 @@
-#ifndef IMAGE_LIB
-#define IMAGE_LIB
+#include "sobel_test.h"
 
-#include <line_conv.h>
-#include <imageprocessing.h>
-#include <math.h>
-#endif
-
-int main(){
+void* linear_sobel(void* args){
 	int i, j;
 	imagem img;
-	img = abrir_imagem("../../data/cachorro.jpg");
+	img = abrir_imagem("../../data/Sunflower.jpg");
        	
 	imagem Gx;
 	imgAlloc(&Gx, img.width, img.height);
@@ -56,12 +50,13 @@ int main(){
 							Gy.b[i*img.width+j]*Gy.b[i*img.width+j]);
 		}
 	}
-  	salvar_imagem("cachorroSobel.jpg", &imgOut);
+  	salvar_imagem("SunflowerSobel.jpg", &imgOut);
+	liberar_imagem(&img);
 	imgFree(&imgOut);
 	imgFree(&Gx);
 	imgFree(&Gy);
 	imgFree(&GxTemp);
 	imgFree(&GyTemp);
 
-	return 0;
+	return; 
 }

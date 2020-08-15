@@ -31,6 +31,9 @@ void* worker(void *arg){
 
 
 void* thread_conv(void* args) {
+    //iteracao atual	
+    int iter = *((int*) args);
+
     
     /*Inicializo as threads para cada cor da imagem*/
     thread_args *red;
@@ -77,8 +80,9 @@ void* thread_conv(void* args) {
         pthread_join(workers[i], NULL);
     }
 
-	/*Salvo a imagem*/
-    salvar_imagem("cachorro_thread.jpg", &imgOut);
+    liberar_imagem(&img);
+	if (iter==99)
+    		salvar_imagem("cachorro_thread.jpg", &imgOut);
     imgFree(&imgOut);
     return NULL;
 }

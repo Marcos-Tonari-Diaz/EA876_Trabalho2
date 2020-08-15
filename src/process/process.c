@@ -11,12 +11,14 @@ enum color
 };
 
 void* processo_conv(void* args){
-	int i;
+	//iteracao atual	
+	int iter = *((int*) args);
 
+	int i;
 	// entrada
 	imagem img = abrir_imagem("data/cachorro.jpg");
 
-	// na versao em proxesso, inicio a struct manualmente	
+	// na versao em processo, inicio a struct manualmente	
 	imagem imgOut;
 	imgOut.height=img.height;
 	imgOut.width=img.width;
@@ -63,10 +65,12 @@ void* processo_conv(void* args){
 			exit(0);
 		}
 	}	
+    	liberar_imagem(&img);
 	//espera os processos filhos terminarem
 	for (i=0;i<N_PROCESSOS;i++){
 		waitpid(filhos[i], NULL, 0);
 	}
-    salvar_imagem("cachorro_process.jpg", &imgOut);
+	if (iter==99)
+    		salvar_imagem("cachorro_process.jpg", &imgOut);
     return NULL;
 }

@@ -1,6 +1,9 @@
 #include "linear_box.h"
 
 void* linear_box(void* args){
+        //iteracao atual
+	int iter = *((int*) args);
+
 	int i;
 	imagem img;
 	img = abrir_imagem("data/cachorro.jpg");
@@ -19,7 +22,9 @@ void* linear_box(void* args){
 		simpleLineConv(img.g, img.width, img.height, 0, i, boxBlurKernel, N, &(imgOut.g[i*img.width]));
 		simpleLineConv(img.b, img.width, img.height, 0, i, boxBlurKernel, N, &(imgOut.b[i*img.width]));
 	}
-  	salvar_imagem("cachorroBoxBlur.jpg", &imgOut);
+	liberar_imagem(&img);
+	if (iter==99)
+    		salvar_imagem("cachorro_linear.jpg", &imgOut);
 	imgFree(&imgOut);
-
+	return NULL;
 }

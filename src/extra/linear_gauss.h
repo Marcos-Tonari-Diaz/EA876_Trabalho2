@@ -6,3 +6,4 @@
 #include "gaussianKernel.h"
 
 #endif
+void* linear_gauss(void* args);
