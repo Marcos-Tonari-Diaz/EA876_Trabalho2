@@ -77,6 +77,10 @@ void* thread_conv(void* args) {
         pthread_join(workers[i], NULL);
     }
 
+	free(red);
+	free(green);
+	free(blue);
+
 	/*Salvo a imagem*/
     salvar_imagem("cachorro_thread.jpg", &imgOut);
     imgFree(&imgOut);

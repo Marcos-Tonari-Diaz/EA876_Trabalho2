@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define ITERACOES 5
+#define ITERACOES 10
 
 int main(){
 	/*Variavel lixo para conseguir chamar a funcao medir_tempo,
