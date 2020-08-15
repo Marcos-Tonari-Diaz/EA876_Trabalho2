@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define ITERACOES 3
+#define ITERACOES 5
 
 int main(){
 	/*Variavel lixo para conseguir chamar a funcao medir_tempo,
@@ -18,21 +18,23 @@ int main(){
 	char out2[20];
 	char out3[20];
 
-	//printf("linear\n");
+	printf("linear\n");
 	for(int i=0; i<ITERACOES; i++){
 		medir_tempo(linear_box, &lixo, out1);
 		//fprintf(testOut, "%s", out1);
 	}
-	//printf("thread\n");
+	printf("thread\n");
 	for(int i=0; i<ITERACOES; i++){
 		medir_tempo(thread_conv, &lixo, out2);
 		//fprintf(testOut, "%s", out2);
 	}
-	//printf("processo\n");
+	printf("processo\n");
+	fflush(stdout);
 	for(int i=0; i<ITERACOES; i++){
 		medir_tempo(processo_conv, &lixo, out3);
+		fflush(stdout);
 		//fprintf(testOut, "%s", out3);
 	}
-	printf("%s%s%s", out1, out2, out3);
+	//printf("%s%s%s", out1, out2, out3);
 	return 0;
 }

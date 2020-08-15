@@ -15,6 +15,6 @@ void medir_tempo(void *(*funcao)(void *args), void *args, char* str){
   gettimeofday(&rt1, NULL);
 
   timersub(&rt1, &rt0, &drt);
-  sprintf(str, "%ld.%06ld\n", drt.tv_sec, drt.tv_usec);
+  printf("%ld.%06ld\n", drt.tv_sec, drt.tv_usec);
   //printf("Tempo user: %f segundos\n", (double)(ct1-ct0)/CLOCKS_PER_SEC);
 }
