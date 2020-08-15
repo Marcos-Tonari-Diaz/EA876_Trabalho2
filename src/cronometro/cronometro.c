@@ -18,4 +18,3 @@ void medir_tempo(void *(*funcao)(void *args), void *args) {
   printf("%ld.%06ld\n", drt.tv_sec, drt.tv_usec);
   //printf("Tempo user: %f segundos\n", (double)(ct1-ct0)/CLOCKS_PER_SEC);
 }
-

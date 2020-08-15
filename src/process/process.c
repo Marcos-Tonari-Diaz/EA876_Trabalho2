@@ -1,6 +1,6 @@
 #include "process.h"
 
-#define N_PROCESSOS 8
+#define N_PROCESSOS 3
 
 // canais de cor
 enum color
@@ -10,11 +10,11 @@ enum color
     BLUE 
 };
 
-int main(){
+void* processo_conv(void* args){
 	int i;
 
 	// entrada
-	imagem img = abrir_imagem("../../data/cachorro.jpg");
+	imagem img = abrir_imagem("data/cachorro.jpg");
 
 	// na versao em proxesso, inicio a struct manualmente	
 	imagem imgOut;
@@ -32,7 +32,7 @@ int main(){
 	imgOut.b = (float*) mmap(NULL, sizeof(float)*img.width*img.height, protection, visibility, 0, 0);
 
 	// Kernel
-	int N = 5;
+	int N = 8;
 	float boxBlurKernel[N*N] ;
 	for (i=0; i<(N*N); i++){
 		boxBlurKernel[i]=(float)1/((float)N*N);
@@ -67,7 +67,6 @@ int main(){
 	for (i=0;i<N_PROCESSOS;i++){
 		waitpid(filhos[i], NULL, 0);
 	}
-	
-  	salvar_imagem("cachorroProcessBox.jpg", &imgOut);
-	return 0;
+    salvar_imagem("cachorro_process.jpg", &imgOut);
+    return NULL;
 }

@@ -8,10 +8,10 @@ THREAD=thread.c
 THREADO=$(THREAD:.c=.o)
 
 
-all: IMGO GAUSS LINE_CONVO LINEARO THREADO
+all: IMGO GAUSS LINE_CONVO LINEARO THREADO PROCESSO
 	$(MAKE) -C src
 
-GAUSS: 
+GAUSS: LINE_CONVO	
 	$(MAKE) -C src/gauss
 
 LINE_CONVO: IMGO
@@ -26,12 +26,16 @@ LINEARO: LINE_CONVO
 THREADO: LINE_CONVO
 	$(MAKE) -C src/thread
 
+PROCESSO: LINE_CONVO
+	$(MAKE) -C src/process
+
 clean:
 	$(MAKE) clean -C src/conv
 	$(MAKE) clean -C src/gauss
 	$(MAKE) clean -C src/images
 	$(MAKE) clean -C src/linear
 	$(MAKE) clean -C src/thread
+	$(MAKE) clean -C src/process
 	$(MAKE) clean -C src
 	rm -f *.jpg
 	rm -f main

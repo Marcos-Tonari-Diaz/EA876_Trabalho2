@@ -12,3 +12,5 @@
 #include <line_conv.h>
 
 #endif
+
+void* processo_conv(void* args);
