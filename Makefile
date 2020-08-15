@@ -8,7 +8,7 @@ THREAD=thread.c
 THREADO=$(THREAD:.c=.o)
 
 
-all: IMGO GAUSS LINE_CONVO LINEARO THREADO PROCESSO
+all: IMGO GAUSS LINE_CONVO LINEARO THREADO PROCESSO CRONO
 	$(MAKE) -C src
 
 GAUSS: LINE_CONVO	
@@ -29,6 +29,9 @@ THREADO: LINE_CONVO
 PROCESSO: LINE_CONVO
 	$(MAKE) -C src/process
 
+CRONO: 
+	$(MAKE) -C src/cronometro
+
 clean:
 	$(MAKE) clean -C src/conv
 	$(MAKE) clean -C src/gauss
@@ -36,9 +39,11 @@ clean:
 	$(MAKE) clean -C src/linear
 	$(MAKE) clean -C src/thread
 	$(MAKE) clean -C src/process
+	$(MAKE) clean -C src/cronometro
 	$(MAKE) clean -C src
 	rm -f *.jpg
 	rm -f main
+	rm -f *.txt
 
 test: all
 	./main | python3 src/analise.py	
