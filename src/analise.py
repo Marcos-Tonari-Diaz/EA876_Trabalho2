@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 
-ITERACOES =3
+ITERACOES =5
 
 linear = np.zeros(shape=(ITERACOES, 1))
 thread = np.zeros(shape=(ITERACOES, 1))
