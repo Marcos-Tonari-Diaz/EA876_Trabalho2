@@ -1,4 +1,9 @@
 # EA876_Trabalho2
+
+## Integrantes:
+### nome: Enzo Hideki Iwata ra: 215394
+### nome: Marcos Gabriel Diaz ra:
+
 ## Comandos:
 
 ```make```: compila o código.
