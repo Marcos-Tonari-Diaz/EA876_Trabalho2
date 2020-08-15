@@ -14,11 +14,11 @@
 
 ```make```: Compila todos os codigos. A funcao principal (main) filtra 100 vezes uma mesma imagem com o filtro Box Blur, para cada uma das três configurações de concorrência: linear (sem concorrência), muli-thread e multi-processo.
 
-```make test```: Executa as filtragens e gera os gráficos. Eles serao salvos em formato pdf na pasta temp. As imagens sao salvas na pasta raiz.
+```make test```: Executa as filtragens e gera os gráficos. Eles serao salvos em formato pdf na pasta temp. As imagens sao salvas na pasta resultados.
 
 ```make clean```: Exclui os arquivos objeto (.o),  executáveis e imagens geradas.
 
-```make extra```: Executa os filtros gaussiano e sobel (bonus) e salva as imagens no diretorio raiz.
+```make extra```: Executa os filtros gaussiano e sobel (bonus) e salva as imagens no diretorio rsultados.
 
 ## OBS: histogramas fixos na pasta doc
 
