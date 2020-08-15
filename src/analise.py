@@ -12,7 +12,6 @@ linha = 0
 #print("Iniciou a anlise!")
 
 for line in sys.stdin:
-    print(float(line))
     if(linha < ITERACOES):
         linear[linha-1] = float(line)
     elif(ITERACOES <= linha < 2*ITERACOES):

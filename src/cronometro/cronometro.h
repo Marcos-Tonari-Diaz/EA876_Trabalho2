@@ -4,7 +4,7 @@
 #include <sys/time.h>
 #include <stdio.h>
 
-void medir_tempo(void *(*funcao)(void *args), void *args);
+void medir_tempo(void *(*funcao)(void *args), void *args, char* str);
 
 #endif
 

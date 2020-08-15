@@ -1,7 +1,7 @@
 #include "cronometro.h"
 
 
-void medir_tempo(void *(*funcao)(void *args), void *args) {
+void medir_tempo(void *(*funcao)(void *args), void *args, char* str){
   clock_t ct0, ct1, dct; /* Medida de tempo baseada no clock da CPU */
   struct timeval rt0, rt1, drt; /* Tempo baseada em tempo real */
   void *P;
